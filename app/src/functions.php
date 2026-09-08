@@ -1,12 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App;
 
-use InvalidArgumentException;
-use OutOfRangeException;
-use Throwable;
-use TypeError;
 
 function handleTask1Post(array &$params): void
 {

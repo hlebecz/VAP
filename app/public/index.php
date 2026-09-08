@@ -1,10 +1,9 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../src/functions.php';
 
 use App\Render;
-use function App\handleTask1Post;
-use function App\handleTask2Post;
-use function App\handleTask3Post;
+
 
 const VIEWS_PATH = __DIR__ . '/../views/';
 const LAYOUT_PATH = __DIR__ . '/../views/layout.php';
