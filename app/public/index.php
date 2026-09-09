@@ -22,12 +22,12 @@ $pages = [
     'task2' => 'task2.view.php',
 ];
 
-$task = $_GET['task'] ?? 'task1';
+$task = $_GET['task'] ?? null;
 $params = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $task !== null) {
     try {
-        handlePostRequest($task, $params);
+        handle_post_request($task, $params);
     } catch (Throwable $e) {
         error_log('[' . date('Y-m-d H:i:s') . '] ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
         $params['error'] = $e->getMessage();
@@ -44,26 +44,24 @@ $renderer->render($view, $params);
  * @param array &$params Parameters to pass to view
  * @return void
  */
-function handlePostRequest(string $task, array &$params): void
+function handle_post_request(string $task, array &$params): void
 {
     switch ($task) {
         case 'task1':
-            handleTask1Post($params);
+            handle_task1($params);
             break;
         case 'task2':
-            handleTask2Post($params);
+            handle_task2($params);
             break;
     }
 }
 
 /**
- * Handle Task 1: Random elements from array
- *
  * @param array &$params Parameters for view
  * @return void
  * @throws InvalidArgumentException
  */
-function handleTask1Post(array &$params): void
+function handle_task1(array &$params): void
 {
     $sourceArray = $_POST['source_array'] ?? '';
     $count = (int)($_POST['count'] ?? 0);
@@ -85,12 +83,10 @@ function handleTask1Post(array &$params): void
 }
 
 /**
- * Handle Task 2: Recursive iterator demonstration
- *
  * @param array &$params Parameters for view
  * @return void
  */
-function handleTask2Post(array &$params): void
+function handle_task2(array &$params): void
 {
     // Sample nested array for demonstration
     $nestedArray = [

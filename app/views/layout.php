@@ -9,8 +9,9 @@
 <body>
 <header class="header">
     <nav class="nav">
-        <a href="index.php?task=task1" class="nav-link">Task 1: Random Array</a>
-        <a href="index.php?task=task2" class="nav-link">Task 2-3: Recursive Iterator</a>
+        <a href="index.php" class="nav-link">Home</a>
+        <a href="index.php?task=task1" class="nav-link">Task 1</a>
+        <a href="index.php?task=task2" class="nav-link">Task 2-3</a>
     </nav>
 </header>
 
@@ -19,7 +20,6 @@
 </main>
 
 <script>
-    // Simple toggle for tree elements
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('tree-toggle')) {
             const parentLi = e.target.parentElement;
