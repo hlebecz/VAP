@@ -5,7 +5,6 @@
         <div class="form-group">
             <label for="array-input">Enter array values (comma-separated):</label>
             <input type="text" id="array-input" name="array" placeholder="5, 2, 8, 1, 9" required>
-            <small>Example: 5, 2, 8, 1, 9</small>
         </div>
 
         <div class="form-group">

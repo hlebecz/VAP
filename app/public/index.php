@@ -4,7 +4,6 @@ require __DIR__ . '/../src/functions.php';
 
 use App\Render;
 
-
 const VIEWS_PATH = __DIR__ . '/../views/';
 const LAYOUT_PATH = __DIR__ . '/../views/layout.php';
 
@@ -21,23 +20,23 @@ $task = $_GET['task'] ?? null;
 $params = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    handlePostRequest($task, $params);
+    handle_post_request($task, $params);
 }
 
 $view = $pages[$task] ?? 'main.view.php';
 $renderer->render($view, $params);
 
-function handlePostRequest(string $task, array &$params): void
+function handle_post_request(string $task, array &$params): void
 {
     switch ($task) {
         case 'task1':
-            handleTask1Post($params);
+            handle_task1($params);
             break;
         case 'task2':
-            handleTask2Post($params);
+            handle_task2($params);
             break;
         case 'task3':
-            handleTask3Post($params);
+            handle_task3($params);
             break;
     }
 }

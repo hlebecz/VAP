@@ -1,9 +1,9 @@
 FROM php:8.4-fpm-alpine
 
-#COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin
-#
-#RUN set -eux; \
-#    install-php-extensions pdo pdo_mysql gd bz2;
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin
+
+RUN set -eux; \
+     install-php-extensions  intl #pdo pdo_mysql gd bz2
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 

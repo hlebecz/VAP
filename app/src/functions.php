@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-
-
-function handleTask1Post(array &$params): void
+function handle_task1(array &$params): void
 {
     $number = $_POST['number'] ?? null;
     if ($number !== null) {
@@ -17,12 +15,12 @@ function handleTask1Post(array &$params): void
     }
 }
 
-function handleTask2Post(array &$params): void
+function handle_task2(array &$params): void
 {
     $length = $_POST['length'] ?? null;
     if ($length !== null) {
         try {
-            $params["randomString"] = randomString((int)$length);
+            $params["randomString"] = random_string((int)$length);
         } catch (OutOfRangeException $e) {
             $params["error"] = $e->getMessage();
         } catch (Throwable $e) {
@@ -31,7 +29,7 @@ function handleTask2Post(array &$params): void
     }
 }
 
-function handleTask3Post(array &$params): void
+function handle_task3(array &$params): void
 {
     $arrayInput = $_POST['array'] ?? '';
 
@@ -77,19 +75,29 @@ function factorial(int $n): int
     return $n * factorial($n - 1);
 }
 
-function randomString(int $length): string
+function random_string(int $length): string
 {
     if ($length <= 0) {
         throw new OutOfRangeException("Length must be greater than 0");
     }
 
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
+    $randomString = [];
 
     for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        $randomString[] = random_utf8_char();
     }
 
-    return $randomString;
+    return implode("", $randomString);
+}
+
+function random_utf8_char(): string {
+    while (true) {
+        $codePoint = random_int(0x0020, 0x0080);
+
+        $char = IntlChar::chr($codePoint);
+
+        if ($char !== null && IntlChar::isprint($char)) {
+            return $char;
+        }
+    }
 }

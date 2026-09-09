@@ -5,7 +5,6 @@
         <div class="form-group">
             <label for="length-input">Enter string length:</label>
             <input type="number" id="length-input" name="length" placeholder="10" min="1" required>
-            <small>Minimum length: 1</small>
         </div>
         <button type="submit" class="btn btn-primary">Generate</button>
     </form>
